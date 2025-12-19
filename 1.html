@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сертификат на 10 Bubble Tea</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f9f3ff 0%, #ffeaf4 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .certificate-container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .certificate {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(178, 122, 207, 0.2);
+            overflow: hidden;
+            position: relative;
+            border: 8px solid #fff;
+        }
+
+        .certificate-header {
+            background: linear-gradient(90deg, #b27acf 0%, #ff93bc 100%);
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .bubble {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .certificate-body {
+            padding: 40px;
+            position: relative;
+        }
+
+        .tea-image {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tea-cup {
+            font-size: 5rem;
+            display: inline-block;
+        }
+
+        .certificate-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+            .certificate-title h2 {
+                font-size: 2.2rem;
+                color: #b27acf;
+                margin-bottom: 10px;
+            }
+
+            .certificate-title p {
+                font-size: 1.1rem;
+                color: #666;
+                max-width: 600px;
+                margin: 0 auto;
+                line-height: 1.6;
+            }
+
+        .certificate-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            background-color: #f9f3ff;
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .detail-item {
+            flex: 1;
+            min-width: 200px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .detail-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ff6ba9;
+            margin-bottom: 5px;
+        }
+
+        .detail-label {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .how-to-use {
+            background-color: #fff5f9;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+            .how-to-use h3 {
+                color: #b27acf;
+                margin-bottom: 15px;
+                font-size: 1.5rem;
+            }
+
+            .how-to-use ol {
+                padding-left: 20px;
+                color: #666;
+                line-height: 1.8;
+            }
+
+            .how-to-use li {
+                margin-bottom: 8px;
+            }
+
+        .certificate-footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            border-top: 2px dashed #e0d1ec;
+        }
+
+        .footer-left, .footer-right {
+            flex: 1;
+            min-width: 250px;
+            margin: 10px;
+        }
+
+            .footer-left h4, .footer-right h4 {
+                color: #b27acf;
+                margin-bottom: 10px;
+                font-size: 1.2rem;
+            }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #ff6ba9;
+            margin-top: 10px;
+        }
+
+        .validity {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .print-btn {
+            display: block;
+            margin: 30px auto 0;
+            background: linear-gradient(90deg, #b27acf 0%, #ff93bc 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(178, 122, 207, 0.3);
+        }
+
+            .print-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 20px rgba(178, 122, 207, 0.4);
+            }
+
+        @media (max-width: 768px) {
+            .certificate-body {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            .certificate-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .detail-value {
+                font-size: 2rem;
+            }
+
+            .footer-left, .footer-right {
+                text-align: center;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .print-btn {
+                display: none;
+            }
+
+            .certificate {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate-container">
+        <div class="certificate">
+            <div class="certificate-header">
+                <div class="bubbles" id="bubbles"></div>
+                <div class="header-content">
+                    <h1>Double Bubble Tea</h1>
+                    <p class="subtitle">Подарочный сертификат</p>
+                </div>
+            </div>
+
+            <div class="certificate-body">
+                <div class="tea-image">
+                    <div class="tea-cup">🧋</div>
+                </div>
+
+                <div class="certificate-title">
+                    <h2>Сертификат на 10 Bubble Tea</h2>
+                    <p>Этот сертификат дает право на получение 10 порций фирменного Bubble Tea в любом из наших кафе. Идеальный подарок для ценителей вкусного и оригинального напитка!</p>
+                </div>
+
+                <div class="certificate-details">
+                    <div class="detail-item">
+                        <div class="detail-value">10</div>
+                        <div class="detail-label">порций Bubble Tea</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-value">любые</div>
+                        <div class="detail-label">вкусы на выбор</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-value">любой</div>
+                        <div class="detail-label">топпинг</div>
+                    </div>
+                </div>
+
+                <div class="how-to-use">
+                    <h3>Как использовать сертификат:</h3>
+                    <ol>
+                        <li>Предъявите этот сертификат (распечатанный или на экране устройства) в любом кафе Double Bubble Tea.</li>
+                        <li>Выберите любимый вкус Bubble Tea из нашего меню.</li>
+                        <li>Выберите топпинг по желанию (тапиока, фруктовые желейные шарики, пудинг и др.).</li>
+                        <li>Наслаждайтесь вкусным напитком! Одна порция будет вычтена из баланса сертификата.</li>
+                    </ol>
+                </div>
+
+                <div class="certificate-footer">
+                    <div class="footer-left">
+                        <h4>Данные получателя</h4>
+                        <p><strong>Имя:</strong> _______________________</p>
+                        <p><strong>Номер сертификата:</strong> DBT-2023-04872</p>
+                        <p class="validity"><strong>Срок действия:</strong> 12 месяцев с даты активации</p>
+                    </div>
+
+                    <div class="footer-right">
+                        <h4>Директор Double Bubble Tea</h4>
+                        <div class="signature">Анна Ли</div>
+                        <p class="validity">Дата выдачи: 15.11.2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="print-btn" onclick="window.print()">Распечатать сертификат</button>
+    </div>
+
+    <script>
+        // Создание анимированных пузырьков
+        function createBubbles() {
+            const bubblesContainer = document.getElementById('bubbles');
+            const numberOfBubbles = 15;
+
+            for (let i = 0; i < numberOfBubbles; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+
+                // Случайный размер
+                const size = Math.random() * 40 + 20;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+
+                // Случайная позиция
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.top = `${Math.random() * 100}%`;
+
+                // Случайная анимация
+                const duration = Math.random() * 10 + 10;
+                const delay = Math.random() * 5;
+                bubble.style.animation = `float ${duration}s ease-in-out ${delay}s infinite alternate`;
+
+                bubblesContainer.appendChild(bubble);
+            }
+        }
+
+        // Добавление CSS анимации для пузырьков
+        const style = document.createElement('style');
+        style.textContent = `
+                @keyframes float {
+                    0% { transform: translateY(0) translateX(0); }
+                    25% { transform: translateY(-20px) translateX(10px); }
+                    50% { transform: translateY(-40px) translateX(-10px); }
+                    75% { transform: translateY(-20px) translateX(5px); }
+                    100% { transform: translateY(0) translateX(-5px); }
+                }
+            `;
+        document.head.appendChild(style);
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', createBubbles);
+
+        // Добавление возможности заполнения имени получателя
+        document.addEventListener('DOMContentLoaded', function () {
+            const nameField = document.querySelector('.footer-left p strong');
+            const nameLine = nameField.parentElement;
+
+            // Заменяем текст на поле для ввода при клике (только для демо)
+            nameLine.innerHTML = '<strong>Имя:</strong> <span contenteditable="true" style="border-bottom: 1px dashed #b27acf; min-width: 150px; display: inline-block;">_______________________</span>';
+
+            // Автозаполнение номера сертификата случайным номером
+            const certNumber = 'DBT-' + new Date().getFullYear() + '-' + Math.floor(Math.random() * 10000).toString().padStart(5, '0');
+            document.querySelector('.footer-left p:nth-child(2)').innerHTML = `<strong>Номер сертификата:</strong> ${certNumber}`;
+
+            // Установка текущей даты
+            const today = new Date();
+            const formattedDate = today.toLocaleDateString('ru-RU');
+            document.querySelector('.footer-right p.validity').innerHTML = `<strong>Дата выдачи:</strong> ${formattedDate}`;
+        });
+    </script>
+</body>
+</html>
