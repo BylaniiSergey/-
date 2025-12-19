@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сертификат на 10 Bubble Tea</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Библиотека для генерации QR-кодов -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f9f3ff 0%, #ffeaf4 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .certificate-container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .certificate {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(178, 122, 207, 0.2);
+            overflow: hidden;
+            position: relative;
+            border: 8px solid #fff;
+        }
+
+        .certificate-header {
+            background: linear-gradient(90deg, #b27acf 0%, #ff93bc 100%);
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .bubble {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .certificate-body {
+            padding: 40px;
+            position: relative;
+        }
+
+        .tea-image {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tea-cup {
+            font-size: 5rem;
+            display: inline-block;
+        }
+
+        .certificate-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+            .certificate-title h2 {
+                font-size: 2.2rem;
+                color: #b27acf;
+                margin-bottom: 10px;
+            }
+
+            .certificate-title p {
+                font-size: 1.1rem;
+                color: #666;
+                max-width: 600px;
+                margin: 0 auto;
+                line-height: 1.6;
+            }
+
+        .certificate-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            background-color: #f9f3ff;
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .detail-item {
+            flex: 1;
+            min-width: 200px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .detail-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ff6ba9;
+            margin-bottom: 5px;
+        }
+
+        .detail-label {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .how-to-use {
+            background-color: #fff5f9;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+            .how-to-use h3 {
+                color: #b27acf;
+                margin-bottom: 15px;
+                font-size: 1.5rem;
+            }
+
+            .how-to-use ol {
+                padding-left: 20px;
+                color: #666;
+                line-height: 1.8;
+            }
+
+            .how-to-use li {
+                margin-bottom: 8px;
+            }
+
+        .certificate-footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            border-top: 2px dashed #e0d1ec;
+        }
+
+        .footer-left, .footer-right {
+            flex: 1;
+            min-width: 250px;
+            margin: 10px;
+        }
+
+            .footer-left h4, .footer-right h4 {
+                color: #b27acf;
+                margin-bottom: 10px;
+                font-size: 1.2rem;
+            }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #ff6ba9;
+            margin-top: 10px;
+        }
+
+        .validity {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .print-btn {
+            display: block;
+            margin: 30px auto 0;
+            background: linear-gradient(90deg, #b27acf 0%, #ff93bc 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(178, 122, 207, 0.3);
+        }
+
+            .print-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 20px rgba(178, 122, 207, 0.4);
+            }
+
+        .qrcode-section {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f9f3ff;
+            border-radius: 15px;
+        }
+
+        .qrcode-container {
+            display: inline-block;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 15px 0;
+        }
+
+        #qrcode {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+
+        .qrcode-label {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .qrcode-instruction {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #888;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .certificate-id {
+            background-color: #ff6ba9;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 1.1rem;
+        }
+
+        .github-instruction {
+            background-color: #f0f8ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            border-left: 4px solid #b27acf;
+        }
+
+            .github-instruction h3 {
+                color: #b27acf;
+                margin-bottom: 10px;
+            }
+
+            .github-instruction ol {
+                padding-left: 20px;
+                margin-bottom: 15px;
+            }
+
+            .github-instruction li {
+                margin-bottom: 8px;
+            }
+
+        .copy-link-btn {
+            display: inline-block;
+            margin: 10px 5px;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+            .copy-link-btn:hover {
+                background: #555;
+            }
+
+        @media (max-width: 768px) {
+            .certificate-body {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            .certificate-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .detail-value {
+                font-size: 2rem;
+            }
+
+            .footer-left, .footer-right {
+                text-align: center;
+            }
+
+            #qrcode {
+                width: 180px;
+                height: 180px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .print-btn, .github-instruction, .copy-link-btn {
+                display: none;
+            }
+
+            .certificate {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate-container">
+        <div class="certificate">
+            <div class="certificate-header">
+                <div class="bubbles" id="bubbles"></div>
+                <div class="header-content">
+                    <h1>Double Bubble Tea</h1>
+                    <p class="subtitle">Подарочный сертификат</p>
+                </div>
+            </div>
+
+            <div class="certificate-body">
+                <div class="tea-image">
+                    <div class="tea-cup">🧋</div>
+                </div>
+
+                <div class="certificate-title">
+                    <h2>Сертификат на 10 Bubble Tea</h2>
+                    <p>Этот сертификат дает право на получение 10 порций фирменного Bubble Tea в любом из наших кафе.</p>
+                </div>
+
+                <div class="qrcode-section">
+                    <h3>Отсканируйте QR-код, чтобы открыть сертификат онлайн</h3>
+                    <div class="qrcode-container">
+                        <div id="qrcode"></div>
+                    </div>
+                    <div class="certificate-id" id="certificateId">DBT-2023-04872</div>
+                    <p class="qrcode-label">Наведите камеру телефона на QR-код</p>
+                    <p class="qrcode-instruction">QR-код ведет на веб-страницу с этим сертификатом. Вы можете поделиться ссылкой или показать сертификат с телефона.</p>
+                </div>
+
+                <div class="certificate-details">
+                    <div class="detail-item">
+                        <div class="detail-value">10</div>
+                        <div class="detail-label">порций Bubble Tea</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-value">любые</div>
+                        <div class="detail-label">вкусы на выбор</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-value">любой</div>
+                        <div class="detail-label">топпинг</div>
+                    </div>
+                </div>
+
+                <div class="how-to-use">
+                    <h3>Как использовать сертификат:</h3>
+                    <ol>
+                        <li>Отсканируйте QR-код для просмотра сертификата на телефоне</li>
+                        <li>Покажите сертификат на телефоне или распечатайте его</li>
+                        <li>Предъявите сертификат в любом кафе Double Bubble Tea</li>
+                        <li>Выберите любимый вкус Bubble Tea из нашего меню</li>
+                        <li>Выберите топпинг по желанию (тапиока, фруктовые желейные шарики, пудинг и др.)</li>
+                        <li>Наслаждайтесь вкусным напитком! Одна порция будет вычтена из баланса сертификата.</li>
+                    </ol>
+                </div>
+
+                <div class="certificate-footer">
+                    <div class="footer-left">
+                        <h4>Данные получателя</h4>
+                        <p><strong>Имя:</strong> <span id="recipientName" contenteditable="true">_______________________</span></p>
+                        <p><strong>Номер сертификата:</strong> <span id="certNumber">DBT-2023-04872</span></p>
+                        <p class="validity"><strong>Срок действия:</strong> 12 месяцев с даты активации</p>
+                    </div>
+
+                    <div class="footer-right">
+                        <h4>Директор Double Bubble Tea</h4>
+                        <div class="signature">Анна Ли</div>
+                        <p class="validity">Дата выдачи: <span id="issueDate">15.11.2023</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="github-instruction">
+            <h3>Как использовать на GitHub Pages:</h3>
+            <ol>
+                <li>Сохраните этот файл как <code>index.html</code></li>
+                <li>Создайте репозиторий на GitHub</li>
+                <li>Загрузите файл в репозиторий</li>
+                <li>Включите GitHub Pages в настройках репозитория</li>
+                <li>Ссылка будет: <code>https://ваш-логин.github.io/имя-репозитория/</code></li>
+            </ol>
+            <p>Ваша ссылка для сертификата: <strong id="github-link">(будет сгенерирована ниже)</strong></p>
+            <button class="copy-link-btn" onclick="copyGithubLink()">Скопировать ссылку</button>
+            <button class="copy-link-btn" onclick="copyQRCodeLink()">Скопировать ссылку из QR-кода</button>
+        </div>
+
+        <button class="print-btn" onclick="window.print()">Распечатать сертификат</button>
+    </div>
+
+    <script>
+        // Генерация уникального ID сертификата
+        function generateCertificateId() {
+            const timestamp = Date.now().toString().slice(-6);
+            const randomNum = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+            const year = new Date().getFullYear();
+            return `DBT-${year}-${timestamp}${randomNum}`;
+        }
+
+        // Генерация QR-кода со ссылкой на сертификат
+        function generateQRCode(certificateId) {
+            const qr = qrcode(0, 'M');
+
+            // Получаем текущий URL страницы
+            // На GitHub Pages это будет полный URL вашей страницы
+            let certUrl = window.location.href;
+
+            // Если страница открыта локально, используем примерный URL для GitHub Pages
+            if (certUrl.startsWith('file://') || certUrl.includes('localhost')) {
+                // Это пример URL для GitHub Pages
+                certUrl = 'https://ваш-логин.github.io/имя-репозитория/';
+            }
+
+            // Добавляем параметр сертификата к URL
+            if (!certUrl.includes('?')) {
+                certUrl += '?cert=' + encodeURIComponent(certificateId);
+            } else {
+                certUrl += '&cert=' + encodeURIComponent(certificateId);
+            }
+
+            qr.addData(certUrl);
+            qr.make();
+
+            // Создаем изображение QR-кода
+            const qrElement = document.getElementById('qrcode');
+            qrElement.innerHTML = qr.createImgTag(5);
+
+            // Добавляем стили для изображения QR-кода
+            const qrImg = qrElement.querySelector('img');
+            if (qrImg) {
+                qrImg.style.width = '100%';
+                qrImg.style.height = '100%';
+                qrImg.style.borderRadius = '8px';
+            }
+
+            // Сохраняем URL для демонстрации
+            console.log('QR-код ведет на:', certUrl);
+            return certUrl;
+        }
+
+        // Создание анимированных пузырьков
+        function createBubbles() {
+            const bubblesContainer = document.getElementById('bubbles');
+            const numberOfBubbles = 15;
+
+            for (let i = 0; i < numberOfBubbles; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+
+                // Случайный размер
+                const size = Math.random() * 40 + 20;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+
+                // Случайная позиция
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.top = `${Math.random() * 100}%`;
+
+                // Случайная анимация
+                const duration = Math.random() * 10 + 10;
+                const delay = Math.random() * 5;
+                bubble.style.animation = `float ${duration}s ease-in-out ${delay}s infinite alternate`;
+
+                bubblesContainer.appendChild(bubble);
+            }
+        }
+
+        // Копирование ссылки GitHub
+        function copyGithubLink() {
+            const currentUrl = window.location.href;
+            const githubLink = currentUrl.split('?')[0]; // Убираем параметры
+
+            navigator.clipboard.writeText(githubLink).then(() => {
+                alert('Ссылка на страницу скопирована:\n' + githubLink);
+            }).catch(err => {
+                console.error('Ошибка копирования: ', err);
+                prompt('Скопируйте эту ссылку вручную:', githubLink);
+            });
+        }
+
+        // Копирование ссылки из QR-кода
+        function copyQRCodeLink() {
+            const certUrl = generateQRCode(document.getElementById('certificateId').textContent);
+            // Получаем ссылку из QR-кода
+            const qrImg = document.querySelector('#qrcode img');
+            if (qrImg && qrImg.src) {
+                // QR-код содержит данные в src как data URL, но нам нужна оригинальная ссылка
+                navigator.clipboard.writeText(certUrl).then(() => {
+                    alert('Ссылка из QR-кода скопирована:\n' + certUrl);
+                }).catch(err => {
+                    console.error('Ошибка копирования: ', err);
+                    prompt('Скопируйте эту ссылку вручную:', certUrl);
+                });
+            }
+        }
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function () {
+            // Добавляем CSS анимацию для пузырьков
+            const style = document.createElement('style');
+            style.textContent = `
+                    @keyframes float {
+                        0% { transform: translateY(0) translateX(0); }
+                        25% { transform: translateY(-20px) translateX(10px); }
+                        50% { transform: translateY(-40px) translateX(-10px); }
+                        75% { transform: translateY(-20px) translateX(5px); }
+                        100% { transform: translateY(0) translateX(-5px); }
+                    }
+                `;
+            document.head.appendChild(style);
+
+            // Создаем пузырьки
+            createBubbles();
+
+            // Генерируем уникальный ID сертификата
+            const certificateId = generateCertificateId();
+
+            // Устанавливаем текущую дату
+            const today = new Date();
+            const formattedDate = today.toLocaleDateString('ru-RU');
+
+            // Обновляем данные на странице
+            document.getElementById('certificateId').textContent = certificateId;
+            document.getElementById('certNumber').textContent = certificateId;
+            document.getElementById('issueDate').textContent = formattedDate;
+
+            // Генерируем QR-код
+            const certUrl = generateQRCode(certificateId);
+
+            // Обновляем ссылку в инструкции
+            document.getElementById('github-link').textContent = window.location.href.split('?')[0];
+
+            // Настройка поля имени получателя
+            const nameField = document.getElementById('recipientName');
+            nameField.addEventListener('blur', function () {
+                if (!this.textContent.trim() || this.textContent === '_______________________') {
+                    this.textContent = '_______________________';
+                }
+            });
+
+            // Добавляем инструкцию для пользователя
+            const nameInstruction = document.createElement('div');
+            nameInstruction.style.fontSize = '0.8rem';
+            nameInstruction.style.color = '#888';
+            nameInstruction.style.marginTop = '5px';
+            nameInstruction.textContent = 'Кликните, чтобы ввести имя получателя';
+            nameField.parentElement.appendChild(nameInstruction);
+
+            // Обновляем QR-код при изменении имени
+            nameField.addEventListener('input', function () {
+                // Перегенерируем QR-код с обновленными данными
+                const currentCertId = document.getElementById('certificateId').textContent;
+                generateQRCode(currentCertId);
+            });
+
+            // Показываем информацию в консоли
+            console.log('Сертификат создан!');
+            console.log('ID:', certificateId);
+            console.log('Ссылка для доступа:', certUrl);
+            console.log('Сохраните этот файл как index.html и загрузите на GitHub Pages');
+        });
+    </script>
+</body>
+</html>
