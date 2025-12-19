@@ -7,8 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <!-- Библиотека для генерации QR-кодов -->
-    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -228,95 +226,6 @@
                 box-shadow: 0 8px 20px rgba(178, 122, 207, 0.4);
             }
 
-        .qrcode-section {
-            text-align: center;
-            margin: 30px 0;
-            padding: 20px;
-            background-color: #f9f3ff;
-            border-radius: 15px;
-        }
-
-        .qrcode-container {
-            display: inline-block;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin: 15px 0;
-        }
-
-        #qrcode {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto;
-        }
-
-        .qrcode-label {
-            margin-top: 15px;
-            font-size: 1.1rem;
-            color: #666;
-        }
-
-        .qrcode-instruction {
-            margin-top: 10px;
-            font-size: 0.9rem;
-            color: #888;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .certificate-id {
-            background-color: #ff6ba9;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 30px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            display: inline-block;
-            margin-top: 15px;
-            font-size: 1.1rem;
-        }
-
-        .github-instruction {
-            background-color: #f0f8ff;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 30px;
-            border-left: 4px solid #b27acf;
-        }
-
-            .github-instruction h3 {
-                color: #b27acf;
-                margin-bottom: 10px;
-            }
-
-            .github-instruction ol {
-                padding-left: 20px;
-                margin-bottom: 15px;
-            }
-
-            .github-instruction li {
-                margin-bottom: 8px;
-            }
-
-        .copy-link-btn {
-            display: inline-block;
-            margin: 10px 5px;
-            background: #333;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-            .copy-link-btn:hover {
-                background: #555;
-            }
-
         @media (max-width: 768px) {
             .certificate-body {
                 padding: 30px 20px;
@@ -337,11 +246,6 @@
             .footer-left, .footer-right {
                 text-align: center;
             }
-
-            #qrcode {
-                width: 180px;
-                height: 180px;
-            }
         }
 
         @media print {
@@ -349,7 +253,7 @@
                 background: white;
             }
 
-            .print-btn, .github-instruction, .copy-link-btn {
+            .print-btn {
                 display: none;
             }
 
@@ -378,17 +282,7 @@
 
                 <div class="certificate-title">
                     <h2>Сертификат на 10 Bubble Tea</h2>
-                    <p>Этот сертификат дает право на получение 10 порций фирменного Bubble Tea в любом из наших кафе.</p>
-                </div>
-
-                <div class="qrcode-section">
-                    <h3>Отсканируйте QR-код, чтобы открыть сертификат онлайн</h3>
-                    <div class="qrcode-container">
-                        <div id="qrcode"></div>
-                    </div>
-                    <div class="certificate-id" id="certificateId">DBT-2023-04872</div>
-                    <p class="qrcode-label">Наведите камеру телефона на QR-код</p>
-                    <p class="qrcode-instruction">QR-код ведет на веб-страницу с этим сертификатом. Вы можете поделиться ссылкой или показать сертификат с телефона.</p>
+                    <p>Этот сертификат дает право на получение 10 порций фирменного Bubble Tea в любом из наших кафе. Идеальный подарок для ценителей вкусного и оригинального напитка!</p>
                 </div>
 
                 <div class="certificate-details">
@@ -409,11 +303,9 @@
                 <div class="how-to-use">
                     <h3>Как использовать сертификат:</h3>
                     <ol>
-                        <li>Отсканируйте QR-код для просмотра сертификата на телефоне</li>
-                        <li>Покажите сертификат на телефоне или распечатайте его</li>
-                        <li>Предъявите сертификат в любом кафе Double Bubble Tea</li>
-                        <li>Выберите любимый вкус Bubble Tea из нашего меню</li>
-                        <li>Выберите топпинг по желанию (тапиока, фруктовые желейные шарики, пудинг и др.)</li>
+                        <li>Предъявите этот сертификат (распечатанный или на экране устройства) в любом кафе Double Bubble Tea.</li>
+                        <li>Выберите любимый вкус Bubble Tea из нашего меню.</li>
+                        <li>Выберите топпинг по желанию (тапиока, фруктовые желейные шарики, пудинг и др.).</li>
                         <li>Наслаждайтесь вкусным напитком! Одна порция будет вычтена из баланса сертификата.</li>
                     </ol>
                 </div>
@@ -421,87 +313,24 @@
                 <div class="certificate-footer">
                     <div class="footer-left">
                         <h4>Данные получателя</h4>
-                        <p><strong>Имя:</strong> <span id="recipientName" contenteditable="true">_______________________</span></p>
-                        <p><strong>Номер сертификата:</strong> <span id="certNumber">DBT-2023-04872</span></p>
+                        <p><strong>Имя:</strong> _______________________</p>
+                        <p><strong>Номер сертификата:</strong> DBT-2023-04872</p>
                         <p class="validity"><strong>Срок действия:</strong> 12 месяцев с даты активации</p>
                     </div>
 
                     <div class="footer-right">
                         <h4>Директор Double Bubble Tea</h4>
                         <div class="signature">Анна Ли</div>
-                        <p class="validity">Дата выдачи: <span id="issueDate">15.11.2023</span></p>
+                        <p class="validity">Дата выдачи: 15.11.2023</p>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="github-instruction">
-            <h3>Как использовать на GitHub Pages:</h3>
-            <ol>
-                <li>Сохраните этот файл как <code>index.html</code></li>
-                <li>Создайте репозиторий на GitHub</li>
-                <li>Загрузите файл в репозиторий</li>
-                <li>Включите GitHub Pages в настройках репозитория</li>
-                <li>Ссылка будет: <code>https://ваш-логин.github.io/имя-репозитория/</code></li>
-            </ol>
-            <p>Ваша ссылка для сертификата: <strong id="github-link">(будет сгенерирована ниже)</strong></p>
-            <button class="copy-link-btn" onclick="copyGithubLink()">Скопировать ссылку</button>
-            <button class="copy-link-btn" onclick="copyQRCodeLink()">Скопировать ссылку из QR-кода</button>
         </div>
 
         <button class="print-btn" onclick="window.print()">Распечатать сертификат</button>
     </div>
 
     <script>
-        // Генерация уникального ID сертификата
-        function generateCertificateId() {
-            const timestamp = Date.now().toString().slice(-6);
-            const randomNum = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-            const year = new Date().getFullYear();
-            return `DBT-${year}-${timestamp}${randomNum}`;
-        }
-
-        // Генерация QR-кода со ссылкой на сертификат
-        function generateQRCode(certificateId) {
-            const qr = qrcode(0, 'M');
-
-            // Получаем текущий URL страницы
-            // На GitHub Pages это будет полный URL вашей страницы
-            let certUrl = window.location.href;
-
-            // Если страница открыта локально, используем примерный URL для GitHub Pages
-            if (certUrl.startsWith('file://') || certUrl.includes('localhost')) {
-                // Это пример URL для GitHub Pages
-                certUrl = 'https://ваш-логин.github.io/имя-репозитория/';
-            }
-
-            // Добавляем параметр сертификата к URL
-            if (!certUrl.includes('?')) {
-                certUrl += '?cert=' + encodeURIComponent(certificateId);
-            } else {
-                certUrl += '&cert=' + encodeURIComponent(certificateId);
-            }
-
-            qr.addData(certUrl);
-            qr.make();
-
-            // Создаем изображение QR-кода
-            const qrElement = document.getElementById('qrcode');
-            qrElement.innerHTML = qr.createImgTag(5);
-
-            // Добавляем стили для изображения QR-кода
-            const qrImg = qrElement.querySelector('img');
-            if (qrImg) {
-                qrImg.style.width = '100%';
-                qrImg.style.height = '100%';
-                qrImg.style.borderRadius = '8px';
-            }
-
-            // Сохраняем URL для демонстрации
-            console.log('QR-код ведет на:', certUrl);
-            return certUrl;
-        }
-
         // Создание анимированных пузырьков
         function createBubbles() {
             const bubblesContainer = document.getElementById('bubbles');
@@ -529,99 +358,38 @@
             }
         }
 
-        // Копирование ссылки GitHub
-        function copyGithubLink() {
-            const currentUrl = window.location.href;
-            const githubLink = currentUrl.split('?')[0]; // Убираем параметры
-
-            navigator.clipboard.writeText(githubLink).then(() => {
-                alert('Ссылка на страницу скопирована:\n' + githubLink);
-            }).catch(err => {
-                console.error('Ошибка копирования: ', err);
-                prompt('Скопируйте эту ссылку вручную:', githubLink);
-            });
-        }
-
-        // Копирование ссылки из QR-кода
-        function copyQRCodeLink() {
-            const certUrl = generateQRCode(document.getElementById('certificateId').textContent);
-            // Получаем ссылку из QR-кода
-            const qrImg = document.querySelector('#qrcode img');
-            if (qrImg && qrImg.src) {
-                // QR-код содержит данные в src как data URL, но нам нужна оригинальная ссылка
-                navigator.clipboard.writeText(certUrl).then(() => {
-                    alert('Ссылка из QR-кода скопирована:\n' + certUrl);
-                }).catch(err => {
-                    console.error('Ошибка копирования: ', err);
-                    prompt('Скопируйте эту ссылку вручную:', certUrl);
-                });
-            }
-        }
+        // Добавление CSS анимации для пузырьков
+        const style = document.createElement('style');
+        style.textContent = `
+                @keyframes float {
+                    0% { transform: translateY(0) translateX(0); }
+                    25% { transform: translateY(-20px) translateX(10px); }
+                    50% { transform: translateY(-40px) translateX(-10px); }
+                    75% { transform: translateY(-20px) translateX(5px); }
+                    100% { transform: translateY(0) translateX(-5px); }
+                }
+            `;
+        document.head.appendChild(style);
 
         // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', createBubbles);
+
+        // Добавление возможности заполнения имени получателя
         document.addEventListener('DOMContentLoaded', function () {
-            // Добавляем CSS анимацию для пузырьков
-            const style = document.createElement('style');
-            style.textContent = `
-                    @keyframes float {
-                        0% { transform: translateY(0) translateX(0); }
-                        25% { transform: translateY(-20px) translateX(10px); }
-                        50% { transform: translateY(-40px) translateX(-10px); }
-                        75% { transform: translateY(-20px) translateX(5px); }
-                        100% { transform: translateY(0) translateX(-5px); }
-                    }
-                `;
-            document.head.appendChild(style);
+            const nameField = document.querySelector('.footer-left p strong');
+            const nameLine = nameField.parentElement;
 
-            // Создаем пузырьки
-            createBubbles();
+            // Заменяем текст на поле для ввода при клике (только для демо)
+            nameLine.innerHTML = '<strong>Имя:</strong> <span contenteditable="true" style="border-bottom: 1px dashed #b27acf; min-width: 150px; display: inline-block;">_______________________</span>';
 
-            // Генерируем уникальный ID сертификата
-            const certificateId = generateCertificateId();
+            // Автозаполнение номера сертификата случайным номером
+            const certNumber = 'DBT-' + new Date().getFullYear() + '-' + Math.floor(Math.random() * 10000).toString().padStart(5, '0');
+            document.querySelector('.footer-left p:nth-child(2)').innerHTML = `<strong>Номер сертификата:</strong> ${certNumber}`;
 
-            // Устанавливаем текущую дату
+            // Установка текущей даты
             const today = new Date();
             const formattedDate = today.toLocaleDateString('ru-RU');
-
-            // Обновляем данные на странице
-            document.getElementById('certificateId').textContent = certificateId;
-            document.getElementById('certNumber').textContent = certificateId;
-            document.getElementById('issueDate').textContent = formattedDate;
-
-            // Генерируем QR-код
-            const certUrl = generateQRCode(certificateId);
-
-            // Обновляем ссылку в инструкции
-            document.getElementById('github-link').textContent = window.location.href.split('?')[0];
-
-            // Настройка поля имени получателя
-            const nameField = document.getElementById('recipientName');
-            nameField.addEventListener('blur', function () {
-                if (!this.textContent.trim() || this.textContent === '_______________________') {
-                    this.textContent = '_______________________';
-                }
-            });
-
-            // Добавляем инструкцию для пользователя
-            const nameInstruction = document.createElement('div');
-            nameInstruction.style.fontSize = '0.8rem';
-            nameInstruction.style.color = '#888';
-            nameInstruction.style.marginTop = '5px';
-            nameInstruction.textContent = 'Кликните, чтобы ввести имя получателя';
-            nameField.parentElement.appendChild(nameInstruction);
-
-            // Обновляем QR-код при изменении имени
-            nameField.addEventListener('input', function () {
-                // Перегенерируем QR-код с обновленными данными
-                const currentCertId = document.getElementById('certificateId').textContent;
-                generateQRCode(currentCertId);
-            });
-
-            // Показываем информацию в консоли
-            console.log('Сертификат создан!');
-            console.log('ID:', certificateId);
-            console.log('Ссылка для доступа:', certUrl);
-            console.log('Сохраните этот файл как index.html и загрузите на GitHub Pages');
+            document.querySelector('.footer-right p.validity').innerHTML = `<strong>Дата выдачи:</strong> ${formattedDate}`;
         });
     </script>
 </body>
